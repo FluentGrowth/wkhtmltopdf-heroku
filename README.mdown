@@ -6,6 +6,31 @@ Experimental support for Heroku Stack-22 (Ubuntu 22 with OpenSSL 3.0) is also av
 
 Preconfigures [pdfkit](https://rubygems.org/gems/pdfkit), [wicked_pdf](https://rubygems.org/gems/wicked_pdf), and [wisepdf](http://rubygems.org/gems/wisepdf) to use this binary if they are loaded.
 
+# Compiling new version
+Run heroku stack docker image you are using, in our case heroku-22
+
+```bash
+docker run -it heroku/heroku:22
+```
+
+Download wkhtmlpdf binary:
+
+```bash
+get https://github.com/wkhtmltopdf/packaging/releases/download/0.12.6.1-2/wkhtmltox_0.12.6.1-2.jammy_amd64.deb
+```
+
+Extract deb file:
+
+```bash
+dpkg -x wkhtmltox_0.12.6.2-1.jammt_amd64.deb .
+```
+
+Copy binary into repo:
+
+```bash
+docker cp container:/usr/local/bin/wkhtmltopdf /path/to/wkhtmltopdf-heroku/bin
+```
+
 ## Installation
 
 In your `Gemfile`:
